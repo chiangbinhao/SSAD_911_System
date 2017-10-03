@@ -1,0 +1,16 @@
+body {
+    background: white url("images/background.png");
+}
+
+ul {
+  list-style-type: none;
+}
+
+.navbar .navbar-center {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  margin:15px auto;
+  color: white;
+}

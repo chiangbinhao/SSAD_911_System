@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+
+body, html {
+	height: 100%;
+	position: relative;
+}
+
+.errorlist{
+    display:none;
+}
+
+.alert{
+	width:80%;
+	position: relative;
+    left: 10%;
+    right: 10%;
+    margin-left: -width;
+    margin-top: -height;
+}
+
+#clearBtn,
+#sendReport {
+    float:right;
+}
+
+.unselectable,
+#panel-form label {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+select:required:invalid {
+    color: gray;
+}
+
+option[value=""][disabled] {
+    display: none;
+}
+
+option {
+    color: black;
+    font-weight:bold;
+}
+
+.panel{
+    position: absolute;
+    width: 78%;
+	top: 0px;
+	left: 50%;
+	transform: translateX(-48.25%);
+	margin: 150px auto;
+	min-height: 250px;
+	z-index: 99;
+}
+
+.panel-heading{
+    margin: auto;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+#panel-form input,
+#panel-form select,
+#panel-form textarea,
+#panel-form label {
+    font-size: 15px;
+    margin-bottom: 2px;
+    font-family: Arial, san-serif;
+    font-weight: bold;
+}
+
+#panel-form input,
+#panel-form select,
+#panel-form textarea {
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    padding: 5px;
+}
+
+#panel-form input:focus,
+#panel-form select:focus,
+#panel-form textarea:focus {
+    background-color: #f9f4d9;
+}
+
+#panel-form textarea {
+    width:95%;
+    height: 100px;
+    resize: vertical;
+}
+
+#panel-form select {
+    height: 37px;
+}
+
+#otherCategory {
+    width: 100%;
+}
+
+#panel-form .bold {
+    font-weight:bold;
+}
+
+/* Make form look nice on smaller screens */
+@media only screen and (max-width: 580px) {
+    #panel-form{
+        left: 3%;
+        margin-right: 3%;
+        width: 88%;
+        margin-left: 0;
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+}
+
+::-webkit-input-placeholder {
+    text-transform: initial;
+}
+
+:-moz-placeholder {
+    text-transform: initial;
+}
+
+::-moz-placeholder {
+    text-transform: initial;
+}
+
+:-ms-input-placeholder {
+    text-transform: initial;
+}
+
+#panel-form div {
+    font-weight: bold;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+#panel-form .left-div {
+  display: inline-block;
+  width: 50%;
+  float: left;
+  display: -webkit-flex;
+}
+
+#panel-form .right-div {
+  display: inline-block;
+  width: 50%;
+  float: right;
+  display: -webkit-flex;
+}
+
+#panel-form .bottom-div {
+  width:100%;
+  float:left;
+  display: -webkit-flex;
+}
+
+input,
+select,
+textarea {
+    -webkit-flex: 1;
+}
+
+#panel-form .button-div {
+  width:100%;
+}
+
+.radio-div {
+    width:100%;
+    margin-left:1.5%;
+}
+
+.radio-div input {
+    float:left;
+    margin:0.8%;
+}
+
+.radio-div div {
+    float:left;
+    width:70px;
+}

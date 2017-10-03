@@ -1,0 +1,147 @@
+{% extends 'gui/base.html' %}
+
+{% block body %}
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">911 Operator Form
+            <button type="button" id="clearBtn" class="btn btn-default" onclick="clearForm();">Clear</button>
+        </div>
+        <div class="panel-body" id="panel-form">
+            <form id="operator_form" name="operator_form" method='POST' action='' enctype='multipart/form-data'>
+                {% csrf_token %}
+                <div class="left-div">
+                    <label for="name">
+                        <span class="bold">Name: </span>
+                    </label>
+                </div>
+
+                <div class="right-div">
+                    <label for="identity">
+                        <span class="bold">NRIC/FIN: </span>
+                    </label>
+                </div>
+
+                <div class="left-div">
+                    <input type="text" id="name" name="name" value="" placeholder="Caller Name (Optional)" tabindex="1" autofocus="autofocus" />
+                </div>
+
+                <div class="right-div">
+                    <input type="text" style="text-transform:uppercase" id="identity" name="identity" value="" placeholder="Caller NRIC/FIN (Optional)" tabindex="2" maxlength="9" onblur="validateNric();"/>
+                </div>
+
+                <div class="left-div">
+                    <div class="left-div" style="padding-bottom:0;">
+                        <label for="dateInput">
+                            <span class="bold">Date: *</span>
+                        </label>
+                    </div>
+
+                    <div class="right-div">
+                        <label for="timeInput">
+                            <span class="bold">Time: *</span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="right-div">
+                    <div>
+                        <label for="category">
+                            <span class="bold">Category: *</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="left-div">
+                    <div class="left-div">
+                        <input type="date" id="dateInput" name="dateInput" tabindex="3" required="required" style="font-size:15px;" onblur="appendTitle();">
+                    </div>
+
+                    <div class="right-div">
+                        <input type="time" id="timeInput" name="timeInput" tabindex="4" required="required" style="font-size:15px;" onblur="appendTitle();">
+                    </div>
+                </div>
+
+                <div class="right-div">
+                    <div class="bottom-div">
+                        <select id="category" name="category" tabindex="5" required="required" onchange="detectOthers()" onblur="appendTitle();">
+                            <option value="" disabled selected>Incident Category</option>
+                            <option value="Fire">Fire</option>
+                            <option value="Flood">Flood</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="right-div" id="categoryDiv" style="display:none">
+                    <input type="text" id="otherCategory" name="otherCategory" placeholder="Indicate Other Category here" tabindex="6" onblur="appendTitle();">
+                </div>
+
+                <div class="bottom-div">
+                    <label for="address">
+                        <span class="bold">Location: *</span>
+                    </label>
+                </div>
+
+                <div class="bottom-div">
+                    <input type="text" id="address" name="address" tabindex="7" placeholder="Enter the Incident Location" autocomplete="off" required="required" onblur="appendTitle();">
+                </div>
+
+                <div class="bottom-div">
+                    <label for="title">
+                        <span class="bold">Title</span>
+                    </label>
+                </div>
+
+                <div class="bottom-div">
+                    <input type="text" class="unselectable" id="title" name="title" autocomplete="off" required="required" readonly>
+                </div>
+
+                <div class="bottom-div">
+                    <label for="description">
+                        <span class="bold">Description: *</span>
+                    </label>
+                </div>
+
+                <div class="bottom-div">
+                    <textarea id="description" name="description" placeholder="Please write a short description of the incident." tabindex="8" required="required"></textarea>
+                </div>
+
+                <div class="bottom-div">
+                    <div class="left-div">
+                        <label>
+                            <span class="bold">Priority Levels</span>
+                        </label>
+                    </div>
+
+                    <div class="right-div">
+                        <label>
+                            <span class="bold">Casualty</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="left-div">
+                    <div class="radio-div">
+                        <input type="radio" id="green" tabindex="9" name="priority" value="green" checked>
+                        <div style="border: 1px solid #00ff00; background:#00ff00; margin-right:40px;">Green</div>
+                        <input type="radio" id="yellow" tabindex="10" name="priority" value="yellow">
+                        <div style="border: 1px solid yellow; background:#ffff00; margin-right:40px;">Yellow</div>
+                        <input type="radio" id="red" tabindex="11" name="priority" value="red">
+                        <div style="border: 1px solid red; background:#ff0000;">Red</div>
+                    </div>
+                </div>
+
+                <div class="right-div" style="padding-right:45%;">
+                    <input type="number" id="casualty" name="casualty" value="0" min="0" required tabindex="12" autofocus="autofocus" />
+                </div>
+
+
+                <div class="button-div">
+                    <button id="sendReport" type="submit" class="btn btn-primary">Send Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}
