@@ -1,0 +1,124 @@
+{% extends 'gui/base.html' %}
+
+{% block cssStyleAndJS %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'gui/LiaisonOfficerGUI.css' %}" />
+    <script src="{% static 'gui/liaisonOfficerScript.js' %}"></script>
+    <script src="{% static 'gui/moment.js' %}"></script>
+    <script src="{% static 'channels/js/websocketbridge.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block body %}
+<div class="left-div">
+    <ul class="nav nav-tabs">
+        <li id="red" class="active">
+            <a data-toggle="tab" href="#redTab" aria-expanded="true">Red</a>
+        </li>
+        <li id="yellow">
+            <a data-toggle="tab" href="#yellowTab">Yellow</a>
+        </li>
+        <li id="green">
+            <a data-toggle="tab" href="#greenTab">Green</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="tab-content">
+        <div id="redTab" class="tab-pane fade in active">
+            <div class="individualTabContent">Red<br>1</div>
+            <div class="individualTabContent">Red<br>2</div>
+            <div class="individualTabContent">Red<br>3</div>
+            <div class="individualTabContent">Red<br>4</div>
+            <div class="individualTabContent">Red<br>5</div>
+            <div class="individualTabContent">Red<br>6</div>
+            <div class="individualTabContent">Red<br>7</div>
+            <div class="individualTabContent">Red<br>8</div>
+            <div class="individualTabContent">Red<br>9</div>
+        </div>
+        <div id="yellowTab" class="tab-pane fade">
+            <div class="individualTabContent">Yellow<br>1</div>
+            <div class="individualTabContent">Yellow<br>2</div>
+            <div class="individualTabContent">Yellow<br>3</div>
+            <div class="individualTabContent">Yellow<br>4</div>
+            <div class="individualTabContent">Yellow<br>5</div>
+            <div class="individualTabContent">Yellow<br>6</div>
+            <div class="individualTabContent">Yellow<br>7</div>
+            <div class="individualTabContent">Yellow<br>8</div>
+            <div class="individualTabContent">Yellow<br>9</div>
+        </div>
+        <div id="greenTab" class="tab-pane fade">
+            <div class="individualTabContent">Green<br>1</div>
+            <div class="individualTabContent">Green<br>2</div>
+            <div class="individualTabContent">Green<br>3</div>
+            <div class="individualTabContent">Green<br>4</div>
+            <div class="individualTabContent">Green<br>5</div>
+            <div class="individualTabContent">Green<br>6</div>
+            <div class="individualTabContent">Green<br>7</div>
+            <div class="individualTabContent">Green<br>8</div>
+            <div class="individualTabContent">Green<br>9</div>
+        </div>
+    </div>
+</div>
+<div class="right-div">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading clearfix">Report Title here</div>
+        </div>
+        <div class="body-container">
+            <div class="panel-body" id="panel-form">
+                <div class="top-left">
+                    <div class="left" id="incidentID">Incident ID here</div><br>
+                    <div class="left" id="date">Date here</div>
+                </div>
+                <div class="top-right">
+                    <div class="right" id="operatorID">Operator ID here</div>
+                </div>
+
+                <div>
+                    <div class="center-title" id="title">Title here</div>
+                </div>
+
+                <div>
+                    <div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div>
+                    <div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div>
+                    <div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div>
+                    <div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div><div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div><div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div>
+                    <div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div>
+                    <div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div>
+                    <div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div>
+                    <div class="center-description">mkdalmfdaslkmvklsdmvlmdslkvmsdmvlksdmvklsdmvsdmvksdmvkmsdlvmdsvk,</div>
+
+
+
+                </div>
+
+                <div class="button-div-margin">
+                    <form id="lo_button_form" method='POST' action='' enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        <div class="left-button">
+                            <div class="left">
+                                <button id="nonCrisis" type="submit" class="btn btn-primary">Non-Crisis</button>
+                            </div>
+                        </div>
+
+                        <div class="right-button">
+                            <div class="right">
+                                <button id="crisis" type="submit" class="btn btn-primary">Crisis</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+{% endblock %}

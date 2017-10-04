@@ -1,5 +1,12 @@
 {% extends 'gui/base.html' %}
 
+{% block cssStyleAndJS %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'gui/OperatorGUI.css' %}" />
+    <script src="{% static 'gui/operatorScript.js' %}"></script>
+    <script src="{% static 'gui/moment.js' %}"></script>
+{% endblock %}
+
 {% block body %}
 <div class="panel-group">
     <div class="panel panel-primary">

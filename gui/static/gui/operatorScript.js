@@ -1,12 +1,9 @@
 window.addEventListener('load',function(){
-
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Vj3dEqjSUukuDpbkNkA7di9CvUJ1nZ4&libraries=places&callback=activatePlacesSearch';
-  document.body.appendChild(script);
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Vj3dEqjSUukuDpbkNkA7di9CvUJ1nZ4&libraries=places&callback=activatePlacesSearch';
+    document.body.appendChild(script);
 });
-
-
 
 function activatePlacesSearch(){
     var options = {
@@ -155,13 +152,6 @@ function onTimeChange(timeInput) {
     meridian = 'PM';
   }
   return (hours + ':' + minutes + ' ' + meridian);
-}
-
-function showAlert() {
-    $("#success-alert").fadeTo(2000, 500).slideUp(500,
-    function(){
-        $("#success-alert").slideUp(500);
-    });
 }
 
 window.setTimeout(function() {

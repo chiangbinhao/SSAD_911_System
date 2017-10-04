@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from channels.binding.websockets import WebsocketBinding
 
 
 class Report(models.Model):
@@ -27,3 +28,16 @@ class Location(models.Model):
 
     def __str__(self):
         return self.Report.IncidentID
+
+
+class ReportBinding(WebsocketBinding):
+    model = Report
+    stream = "intval"
+    fields = ["Priority", "Title", "Category", "Description"]
+
+    @classmethod
+    def group_names(cls, *args, **kwargs):
+        return ["binding.gui"]
+
+    def has_permission(self, user, action, pk):
+        return True

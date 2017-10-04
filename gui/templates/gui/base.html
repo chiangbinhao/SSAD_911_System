@@ -6,12 +6,11 @@
     <!-- Loads the path to static Folder -->
     {% load staticfiles %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'gui/style.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'gui/form.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'gui/baseStyle.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="{% static 'gui/formScript.js' %}"></script>
-    <script src="{% static 'gui/moment.js' %}"></script>
+    {% block cssStyleAndJS %}
+    {% endblock %}
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -54,6 +53,7 @@
     {% endfor %}
 </ul>
 {% endif %}
+
 {% block body %}
 {% endblock %}
 </body>

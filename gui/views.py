@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from .models import Report, Location
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import generic
 
 
 def operator_view(request, username):
@@ -58,3 +60,19 @@ def create_report_view(request, username):
         location.save()
         messages.success(request, "You have successfully submitted the report [" + title + "]")
     return HttpResponse('')
+
+
+class IndexView(LoginRequiredMixin, generic.ListView):
+    template_name = 'gui/loGUI.html'
+
+    def get_queryset(self):
+        return Report.objects.order_by("-id")
+
+
+def updateDetails(request, pk):
+    report = Report.objects.get(pk=pk)
+    return render(request, 'gui/detail.html', {'report': report, 'pk': pk})
+
+
+def testLO(request):
+    return render(request, 'gui/liaisonOfficerGUI.html')

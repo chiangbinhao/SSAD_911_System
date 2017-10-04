@@ -1,0 +1,34 @@
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">911 LO Form</div>
+        <div class="panel-body" id="panel-form">
+            <form id="operator_form" name="operator_form" method='POST' action='' enctype='multipart/form-data'>
+                <input type='hidden' name='csrfmiddlewaretoken' value='F7zNYr4lAigbTPjLT8RYS6qprxXW3xXz19MIb2FDNeF3fUHrzZoEp0hPzNoCWjV4' />
+
+                <div class="bottom-div">
+                    <label for="title">
+                        <span class="bold">{{ report.Title }}</span>
+                    </label>
+                </div>
+
+                <div class="bottom-div">
+                    <label for="description">
+                        <span class="bold">Description: *</span>
+                    </label>
+                </div>
+
+                <div class="bottom-div">
+                    <textarea id="description" name="description" placeholder="{{ report.Description }}" tabindex="8" required="required"></textarea>
+                </div>
+
+                <div class="button-div">
+                    <button id="sendReport" type="submit" class="btn btn-primary">Crisis</button>
+                </div>
+
+                <div class="button-div">
+                    <button id="sendReport" type="submit" class="btn btn-primary">Non Crisis</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
