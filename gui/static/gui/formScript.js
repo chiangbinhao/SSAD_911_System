@@ -1,4 +1,5 @@
 window.addEventListener('load',function(){
+
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Vj3dEqjSUukuDpbkNkA7di9CvUJ1nZ4&libraries=places&callback=activatePlacesSearch';
@@ -182,6 +183,7 @@ $(document).on('submit','#operator_form',function(e){
     }
     var opId = document.getElementById("opId").innerText;
     opId = opId.split('ator ')[1];
+    opId = opId.split(' ')[0];
     var inputLat = sessionStorage.getItem('lat');
     var inputLng = sessionStorage.getItem('lng');
     var inputTime = document.getElementById("timeInput").value;
