@@ -43,18 +43,25 @@ body, html {
 }
 
 .left-div {
-    float: left;
-    margin-left: 3%;
+    position: absolute;
     width: 27%;
-    height: 83%;
-    overflow:hidden;
+    height: 80%;
+	top: 0px;
+	left: 3%;
+	margin: 150px auto;
+	min-height: 250px;
+	z-index: 99;
 }
 
 .right-div {
-    float: right;
-    margin-right: 3%;
-    width:65%;
-    height: 83%;
+    position: absolute;
+    width: 65%;
+    height: 83.5%;
+	top: 0px;
+	left: 32.5%;
+	margin: 150px auto;
+	min-height: 250px;
+	z-index: 98;
 }
 
 ul.nav-tabs {
@@ -76,30 +83,34 @@ ul.nav-tabs>li#red > a {
     color:black;
     border-radius:5px;
     background-color: red;
+    border-color:red;
 }
 
 ul.nav-tabs>li#yellow > a {
     color:black;
     border-radius:5px;
     background-color: yellow;
+    border-color:yellow;
 }
 
 ul.nav-tabs>li#green > a {
     color:black;
     border-radius:5px;
     background-color: #00ff00;
+    border-color:#00ff00;
 }
 
 .tab-content {
-    margin-top:2.25px;
+    margin-top:0px;
     border-style: solid;
-    border-top-style: groove;
+    border-top-style: none;
     border-width: 0.25px;
     border-top-color: grey;
     border-color: grey;
     background-color:white;
     height: 95%;
     overflow:scroll;
+    overflow-x: hidden;
 }
 
 .tab-content .tab-pane {
@@ -111,6 +122,7 @@ ul.nav-tabs>li#green > a {
     border-style:solid;
     border-width:0.25px;
     border-color:#e1e1e1;
+    height: 84px;
 }
 
 .panel-heading {
@@ -159,7 +171,7 @@ ul.nav-tabs>li#green > a {
 
 .center-title {
     text-align: center;
-    font-size:20px;
+    font-size:24px;
     font-weight: bold;
     text-decoration: underline;
     width:100%;
@@ -167,10 +179,18 @@ ul.nav-tabs>li#green > a {
 
 .center-description {
     text-align: center;
-    font-size:16px;
+    font-size:18px;
     font-weight: bold;
-    width:100%;
+    width:90%;
     margin-top:3%;
+    margin-left:5%;
+    margin-right:5%;
+    display:block;
+    overflow:auto;
+}
+
+.center-description > #casualty {
+    font-size:12px;
 }
 
 .button-div-margin {
@@ -192,9 +212,6 @@ ul.nav-tabs>li#green > a {
 button {
     width:150px;
     height:40px;
-
-
-
 }
 
 #nonCrisis {
@@ -209,6 +226,61 @@ button {
     color:black;
     font-weight:bold;
     border-radius: 5px;
+}
+
+.empty {
+    list-style-type: none;
+    margin:10px;
+}
+
+.panel > .panel-heading.red {
+    background-color:red;
+    color: black;
+}
+
+.panel > .panel-heading.yellow {
+    background-color:yellow;
+    color: black;
+}
+
+.panel > .panel-heading.green {
+    background-color:#00ff00;
+    color: black;
+}
+
+#red.active{
+    box-shadow: 0 0 30px rgba(255, 50, 50, 0.7);
+    padding: 0;
+    margin: 0;
+    border: 3px solid rgba(255, 50, 50, 0.7);
+    border-radius:10px;
+
+}
+
+#yellow.active{
+    box-shadow: 0 0 30px rgba(255, 255, 50, 0.7);
+    padding: 0;
+    margin: 0;
+    border: 3px solid rgba(255, 255, 50, 0.7);
+    border-radius:10px;
+
+}
+
+#green.active{
+    box-shadow: 0 0 30px rgba(50, 255, 50, 0.7);
+    padding: 0;
+    margin: 0;
+    border: 3px solid rgba(50, 255, 50, 0.7);
+    border-radius:10px;
+
+}
+
+.nav > li > a{
+    margin:0;
+}
+
+.highlightDiv {
+    background-color: #E8E8E8;
 }
 
 /* Let's get this party started */

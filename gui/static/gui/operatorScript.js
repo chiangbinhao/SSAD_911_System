@@ -3,6 +3,11 @@ window.addEventListener('load',function(){
     script.type = 'text/javascript';
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Vj3dEqjSUukuDpbkNkA7di9CvUJ1nZ4&libraries=places&callback=activatePlacesSearch';
     document.body.appendChild(script);
+    var pk = window.location.href;
+    console.log(pk);
+    pk = pk.split('op/')[1];
+    pk = pk.split('/')[0];
+    sessionStorage.setItem('pk', pk);
 });
 
 function activatePlacesSearch(){
@@ -171,9 +176,10 @@ $(document).on('submit','#operator_form',function(e){
             return alert("Please fill in Other Category")
         }
     }
-    var opId = document.getElementById("opId").innerText;
+    var opId = document.getElementById("userId").innerText;
     opId = opId.split('ator ')[1];
     opId = opId.split(' ')[0];
+    var pk = sessionStorage.getItem('pk');
     var inputLat = sessionStorage.getItem('lat');
     var inputLng = sessionStorage.getItem('lng');
     var inputTime = document.getElementById("timeInput").value;
@@ -181,7 +187,7 @@ $(document).on('submit','#operator_form',function(e){
     var casualtyInput = document.getElementById("casualty").value;
     $.ajax({
         type:'POST',
-        url:'/gui/operator/' + opId + '/create/report/',
+        url:'/op/' + pk + '/' + opId + '/create/report/',
         data:{
             name: $('#name').val(),
             identity: $('#identity').val(),
@@ -191,7 +197,7 @@ $(document).on('submit','#operator_form',function(e){
             address: $('#address').val(),
             title: $('#title').val(),
             description: $('#description').val(),
-            priority: document.forms.operator_form.priority.value,
+            priority: $('input[name=priority]:checked').val(),
             casualty: casualtyInput,
             operatorId: opId,
             lat: inputLat,

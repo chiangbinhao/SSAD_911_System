@@ -1,34 +1,46 @@
-<div class="panel-group">
-    <div class="panel panel-primary">
-        <div class="panel-heading clearfix">911 LO Form</div>
-        <div class="panel-body" id="panel-form">
-            <form id="operator_form" name="operator_form" method='POST' action='' enctype='multipart/form-data'>
-                <input type='hidden' name='csrfmiddlewaretoken' value='F7zNYr4lAigbTPjLT8RYS6qprxXW3xXz19MIb2FDNeF3fUHrzZoEp0hPzNoCWjV4' />
+<div class="panel panel-primary">
+    <div class="panel-heading {{ report.Priority }}">{{ report.Title }}</div>
+</div>
+<div class="body-container">
+    <div class="panel-body" id="panel-form">
+        <div class="top-left">
+            <div class="left" id="incidentID">Incident ID: {{ report.IncidentID }}</div><br>
+            <div class="left" id="date">{{ report.Datetime }}</div>
+        </div>
+        <div class="top-right">
+            <div class="right" id="operatorID">Assigned Operator ID: {{ report.Operator.username }}</div>
+        </div>
 
-                <div class="bottom-div">
-                    <label for="title">
-                        <span class="bold">{{ report.Title }}</span>
-                    </label>
+        <div class="center-title">
+            <div id="title">{{ report.Title }}</div>
+        </div>
+
+        <div class="center-description">
+            <div id="description">{{ report.Description }}</div>
+        </div>
+
+        <div class="center-description">
+            <div id="casualty">Casualty Count: {{ report.Casualty }}</div>
+        </div>
+
+        <div class="button-div-margin">
+                <div class="left-button">
+                    <div class="left">
+                        <form id="lo_noncrisis_button_form" method='POST' action='' enctype='multipart/form-data'>
+                            {% csrf_token %}
+                            <button id="nonCrisis" type="submit" class="btn btn-primary">Non-Crisis</button>
+                        </form>
+                    </div>
                 </div>
 
-                <div class="bottom-div">
-                    <label for="description">
-                        <span class="bold">Description: *</span>
-                    </label>
+                <div class="right-button">
+                    <div class="right">
+                        <form id="lo_crisis_button_form" method='POST' action='' enctype='multipart/form-data'>
+                            {% csrf_token %}
+                            <button id="crisis" type="submit" class="btn btn-primary">Crisis</button>
+                        </form>
+                    </div>
                 </div>
-
-                <div class="bottom-div">
-                    <textarea id="description" name="description" placeholder="{{ report.Description }}" tabindex="8" required="required"></textarea>
-                </div>
-
-                <div class="button-div">
-                    <button id="sendReport" type="submit" class="btn btn-primary">Crisis</button>
-                </div>
-
-                <div class="button-div">
-                    <button id="sendReport" type="submit" class="btn btn-primary">Non Crisis</button>
-                </div>
-            </form>
         </div>
     </div>
 </div>

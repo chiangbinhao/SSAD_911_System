@@ -4,7 +4,7 @@ from .models import ReportBinding
 
 class Demultiplexer(WebsocketDemultiplexer):
     consumers = {
-        "intval": ReportBinding.consumer,
+        "report": ReportBinding.consumer,
     }
 
     groups = ["binding.gui"]

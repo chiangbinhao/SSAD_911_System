@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Operator {{ name }} GUI</title>
+    <title>{{ name }} GUI</title>
     <!-- Loads the path to static Folder -->
     {% load staticfiles %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'gui/baseStyle.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'gui/baseStyle.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {% block cssStyleAndJS %}
     {% endblock %}
@@ -28,8 +28,8 @@
         <!-- NavBar Items -->
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="navbar navbar-center">
-                <li class="active" id="opId">
-                    <b>Welcome, Operator {{ name }}</b>
+                <li class="active" id="userId">
+                    <b>Welcome, {{ name }}</b>
                 </li>
             </ul>
 
@@ -44,14 +44,12 @@
     </div>
 </nav>
 {% if messages %}
-<ul class="messages">
     {% for message in messages %}
         <div id="messageAlert" {% if message.tags == "success" %} class="alert alert-success alert-dismissable"{% endif %}>
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>{{ message }}</strong>
         </div>
     {% endfor %}
-</ul>
 {% endif %}
 
 {% block body %}

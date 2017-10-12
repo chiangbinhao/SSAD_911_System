@@ -4,7 +4,7 @@ from channels.binding.websockets import WebsocketBinding
 
 
 class Report(models.Model):
-    OperatorID = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False)
+    Operator = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False)
     IncidentID = models.CharField(max_length=100, blank=False)
     CallerName = models.CharField(max_length=250, blank=True)
     CallerID = models.CharField(max_length=9, blank=True)
@@ -32,8 +32,8 @@ class Location(models.Model):
 
 class ReportBinding(WebsocketBinding):
     model = Report
-    stream = "intval"
-    fields = ["Priority", "Title", "Category", "Description"]
+    stream = "report"
+    fields = ["Operator", "IncidentID", "Datetime", "Title", "Description", "Priority", "Casualty"]
 
     @classmethod
     def group_names(cls, *args, **kwargs):
