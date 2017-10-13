@@ -28,16 +28,22 @@ $(function () {
 
             if (payload.data.Priority =="red") {
                 $("#redTab").append(content);
+                var redcount = $("#redTab div").length;
+                $("#redcount").html(redcount);
                 // Remove empty message
                 $("#redTab .empty").remove();
             }
             if (payload.data.Priority == "yellow") {
                 $("#yellowTab").append(content);
+                var yellowcount = $("#yellowTab div").length;
+                $("#yellowcount").html(yellowcount);
                 // Remove empty message
                 $("#yellowTab .empty").remove();
             }
             if (payload.data.Priority == "green") {
                 $("#greenTab").append(content);
+                var greencount = $("#greenTab div").length;
+                $("#greencount").html(greencount);
                 // Remove empty message
                 $("#greenTab .empty").remove();
             }
@@ -82,6 +88,12 @@ window.addEventListener('load',function(){
         var firstDiv = $("#redTab:first-child").attr("id");
         $('#' + firstDiv).find('a').first().trigger('click');
     }
+    var redcount = $("#redTab div").length;
+    $("#redcount").html(redcount);
+    var yellowcount = $("#yellowTab div").length;
+    $("#yellowcount").html(yellowcount);
+    var greencount = $("#greenTab div").length;
+    $("#greencount").html(greencount);
 
 });
 
