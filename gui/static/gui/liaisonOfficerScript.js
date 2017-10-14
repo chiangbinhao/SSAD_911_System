@@ -48,9 +48,10 @@ $(function () {
                 $("#greenTab .empty").remove();
             }
         } else if (payload.action == "update") {
-            $("p[data-value-id=" + payload.pk + "] label").text(payload.data.name);
+            $("div[id=" + payload.pk + "]").remove();
+            updatecount();
         } else if (payload.action == "delete") {
-            $("li[data-value-id=" + payload.pk + "]").remove();
+            $("div[id=" + payload.pk + "]").remove();
         } else {
             console.log("Unknown action " + payload.action);
         }
@@ -88,12 +89,7 @@ window.addEventListener('load',function(){
         var firstDiv = $("#redTab:first-child").attr("id");
         $('#' + firstDiv).find('a').first().trigger('click');
     }
-    var redcount = $("#redTab div").length;
-    $("#redcount").html(redcount);
-    var yellowcount = $("#yellowTab div").length;
-    $("#yellowcount").html(yellowcount);
-    var greencount = $("#greenTab div").length;
-    $("#greencount").html(greencount);
+    updatecount();
 
 });
 
@@ -154,4 +150,13 @@ $(document).on('submit','#lo_crisis_button_form',function(e){
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function updatecount(){
+    var redcount = $("#redTab div").length;
+    $("#redcount").html(redcount);
+    var yellowcount = $("#yellowTab div").length;
+    $("#yellowcount").html(yellowcount);
+    var greencount = $("#greenTab div").length;
+    $("#greencount").html(greencount);
 }
