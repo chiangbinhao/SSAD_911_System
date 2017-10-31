@@ -199,22 +199,24 @@ ul.nav-tabs>li#green > a {
 }
 
 .left-button {
-    width:25%;
+    width:17%;
     float:left;
     margin-left:25%;
+    margin-right:8%;
+    background-color:green;
 }
 
 .right-button {
-    width:25%;
+    width:7.6%;
     float:right;
-    margin-right:25%;
-}
-button {
-    width:150px;
-    height:40px;
+    margin-right:34.5%;
+    margin-left:7.9%;
+    background-color:red;
 }
 
 #nonCrisis {
+    width:150%;
+    height:40px;
     background-color:#00ff00;
     color:black;
     font-weight:bold;
@@ -222,6 +224,8 @@ button {
 }
 
 #crisis {
+    width:225%;
+    height:40px;
     background-color:red;
     color:black;
     font-weight:bold;
@@ -233,19 +237,16 @@ button {
     margin:10px;
 }
 
-.panel > .panel-heading.red {
+#redlabel {
     background-color:red;
-    color: black;
 }
 
-.panel > .panel-heading.yellow {
+#yellowlabel {
     background-color:yellow;
-    color: black;
 }
 
-.panel > .panel-heading.green {
+#greenlabel {
     background-color:#00ff00;
-    color: black;
 }
 
 #red.active{

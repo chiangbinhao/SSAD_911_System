@@ -1,5 +1,8 @@
 <div class="panel panel-primary">
-    <div class="panel-heading {{ report.Priority }}">{{ report.Title }}</div>
+    <div class="panel-heading">
+        <span class="label label-default" id="{{ report.Priority }}label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        &nbsp;&nbsp;{{ report.Title }}
+    </div>
 </div>
 <div class="body-container">
     <div class="panel-body" id="panel-form">
