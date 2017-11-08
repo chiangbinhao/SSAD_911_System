@@ -8,14 +8,17 @@ function UpdatePKFunction(pk) {
             $('#'+pk).addClass(addclass);
             var itemUrl = $(this)[0].url;
             itemUrl = itemUrl.split('ort/')[1];
-            //sessionStorage.setItem('divId', document.getElementById("incidentID").innerHTML.split(': ')[1]);
-            sessionStorage.setItem('divId', "C" + (parseInt(pk)-1).toString());
             $("#reportDetails").show();
         }
     });
 };
 
 $(function () {
+	if (!Notification) 
+		alert('Desktop notifications not available in your browser. Try Chromium.'); 
+
+	if (Notification.permission !== "granted")
+		Notification.requestPermission();
     var ws_path = "/stream/";
     console.log("Connecting to " + ws_path);
     var webSocketBridge = new channels.WebSocketBridge();
@@ -24,6 +27,11 @@ $(function () {
     webSocketBridge.demultiplex('report', function (payload, streamName) {
         // Handle different actions
         if (payload.action == "create") {
+			var notification = new Notification("911 Ops Alert", {
+				icon: 'http://172.21.148.166/911.jpg',
+				body: payload.data.Priority + " alert\n" + payload.data.Title,
+			});
+	
             var content = "<div class=\"individualTabContent\" id=\"" + payload.pk + "\"><a onclick='UpdatePKFunction("+ payload.pk + ")' class=\"nav-link\" href=\"#\">" + payload.data.Title + "</a></div>"
 
             if (payload.data.Priority =="red") {
@@ -95,17 +103,17 @@ window.addEventListener('load',function(){
 
 $(document).on('submit','#lo_noncrisis_button_form',function(e){
     e.preventDefault();
-    var incidentid = sessionStorage.getItem('divId');
+    var reportPK = document.getElementById("reportPK").innerHTML;
     $.ajax({
         type:'POST',
-        url:'update/report/' + incidentid + '/',
+        url:'update/report/' + reportPK + '/',
         data:{
             crisis: "n",
             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
         },
         success:function(data){
             if(data) {
-                var strId = "#" + (parseInt(incidentid.split('C')[1]) + 1).toString();
+                var strId = "#" + reportPK;
                 var id = $(strId).parent().attr("id");
                 $(strId).remove();
                 var numOfItems = $("#"+id).children().length;
@@ -127,25 +135,59 @@ $(document).on('submit','#lo_noncrisis_button_form',function(e){
 });
 
 $(document).on('submit','#lo_crisis_button_form',function(e){
-    /*e.preventDefault();
+    e.preventDefault();
     var incidentid = sessionStorage.getItem('divId');
+	var lat = document.getElementById("lat").innerHTML;
+	var lng = document.getElementById("lng").innerHTML;
+	lng = lng.substring(0,12);
+	var descrip = document.getElementById("description").innerHTML;
+	var date_time = document.getElementById("date").innerHTML;
+	var rad = document.getElementById("radius").innerHTML;
+	rad = rad.split('ius: ')[1];
+	rad = rad.split(' metre')[0];
     $.ajax({
         type:'POST',
-        url:'update/report/' + incidentid + '/',
+        url: 'http://172.21.148.168:8000/api/crisisreports/',
         data:{
-            crisis: "n",
+            datetime: date_time,
+			latitude: lat,
+			longitude: lng,
+			description: descrip,
+			radius: rad,
             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
         },
         success:function(data){
-            if(data) {
-                $("#" + (parseInt(incidentid.split('C')[1]) + 1).toString()).remove();
-                var firstDiv = $("#" + $("ul#reportTabs li.active").text().replace(/ /g,'').replace(/(\r\n|\n|\r)/gm,"").toLowerCase() + "Tab:first-child").attr("id");
-                console.log(firstDiv);
-                $('#' + firstDiv).find('a').first().trigger('click');
-                $('html, body').animate({ scrollTop: 0 }, 0);
-            }
+			var reportPK = document.getElementById("reportPK").innerHTML;
+			$.ajax({
+				type:'POST',
+				url:'update/report/' + reportPK + '/',
+				data:{
+					crisis: "y",
+					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+				},
+				success:function(data){
+					if(data) {
+						var strId = "#" + reportPK;
+						var id = $(strId).parent().attr("id");
+						$(strId).remove();
+						var numOfItems = $("#"+id).children().length;
+						if(numOfItems == 0) {
+							var li = document.createElement("li");
+							var node = document.createTextNode("There are no " + capitalizeFirstLetter(id.split('Tab')[0]) + " Priority Report available to authenticate.");
+							li.appendChild(node);
+							li.classList.add("empty");
+							var element = document.getElementById(id);
+							element.appendChild(li);
+							$("#reportDetails").hide();
+						} else {
+							sessionStorage.setItem('first', '#' + id);
+						}
+						location.reload();
+					}
+				}
+			});
         }
-    });*/
+    });
 });
 
 function capitalizeFirstLetter(string) {

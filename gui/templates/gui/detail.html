@@ -1,3 +1,6 @@
+<div hidden id="lat">{{ location.Lat }}</div>
+<div hidden id="lng">{{ location.Long }}</div>
+<div hidden id="reportPK">{{ report.pk }}</div>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <span class="label label-default" id="{{ report.Priority }}label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -11,7 +14,7 @@
             <div class="left" id="date">{{ report.Datetime }}</div>
         </div>
         <div class="top-right">
-            <div class="right" id="operatorID">Assigned Operator ID: {{ report.Operator.username }}</div>
+           <div class="right" id="operatorID">Assigned Operator ID: {{ report.Operator.username }}</div>
         </div>
 
         <div class="center-title">
@@ -24,6 +27,7 @@
 
         <div class="center-description">
             <div id="casualty">Casualty Count: {{ report.Casualty }}</div>
+			<div id="radius">Incident Radius: {{ report.Radius }} metre(s)</div>
         </div>
 
         <div class="button-div-margin">

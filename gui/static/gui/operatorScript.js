@@ -134,6 +134,7 @@ function clearForm() {
     document.getElementById("description").value = "";
     document.getElementById("green").checked = true;
     document.getElementById("casualty").value = "0";
+	document.getElementById("radius").value = "0";
     getDateTimeNow();
 }
 
@@ -185,6 +186,7 @@ $(document).on('submit','#operator_form',function(e){
     var inputTime = document.getElementById("timeInput").value;
     var inputDate = document.getElementById("dateInput").value;
     var casualtyInput = document.getElementById("casualty").value;
+	var radius = document.getElementById("radius").value;
     $.ajax({
         type:'POST',
         url:'/op/' + pk + '/' + opId + '/create/report/',
@@ -202,6 +204,7 @@ $(document).on('submit','#operator_form',function(e){
             operatorId: opId,
             lat: inputLat,
             lng: inputLng,
+            radius: $('#radius').val(),
             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
         },
         success:function(){
