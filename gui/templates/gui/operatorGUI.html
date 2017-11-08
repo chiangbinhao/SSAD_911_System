@@ -84,14 +84,26 @@
                     <input type="text" id="otherCategory" name="otherCategory" placeholder="Indicate Other Category here" tabindex="6" onblur="appendTitle();">
                 </div>
 
-                <div class="bottom-div">
+                <div class="left-div">
                     <label for="address">
                         <span class="bold">Location: *</span>
                     </label>
                 </div>
+				
+				<div class="right-div">
+                    <label for="radius">
+                        <span class="bold">Radius: (metres) *</span>
+                    </label>
+                </div>
+				
+				
 
-                <div class="bottom-div">
+                <div class="left-div">
                     <input type="text" id="address" name="address" tabindex="7" placeholder="Enter the Incident Location" autocomplete="off" required="required" onblur="appendTitle();">
+                </div>
+				
+				<div class="right-div">
+                    <input type="text" id="radius" name="radius" tabindex="7" placeholder="Enter the Location Radius" autocomplete="off" required="required" value="0">
                 </div>
 
                 <div class="bottom-div">

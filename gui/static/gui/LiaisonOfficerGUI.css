@@ -189,7 +189,8 @@ ul.nav-tabs>li#green > a {
     overflow:auto;
 }
 
-.center-description > #casualty {
+.center-description > #casualty,
+.center-description > #radius {
     font-size:12px;
 }
 

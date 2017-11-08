@@ -16,6 +16,7 @@ class Report(models.Model):
     Priority = models.CharField(max_length=6, blank=False)
     Casualty = models.IntegerField(blank=False)
     Vetted = models.BooleanField(default=False)
+    Radius = models.IntegerField(blank=False)
 
     def __str__(self):
         return self.IncidentID + ': ' + self.Title
@@ -33,7 +34,7 @@ class Location(models.Model):
 class ReportBinding(WebsocketBinding):
     model = Report
     stream = "report"
-    fields = ["Operator", "IncidentID", "Datetime", "Title", "Description", "Priority", "Casualty"]
+    fields = ["Operator", "IncidentID", "Datetime", "Title", "Description", "Priority", "Casualty", "Radius"]
 
     @classmethod
     def group_names(cls, *args, **kwargs):

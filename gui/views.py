@@ -35,6 +35,7 @@ def create_report_view(request, pk, username):
                 casualty = request.POST['casualty']
                 lat = request.POST['lat']
                 lng = request.POST['lng']
+                radius = request.POST['radius']
 
                 global incidentid
                 count = Report.objects.count()
@@ -57,7 +58,8 @@ def create_report_view(request, pk, username):
                     Title=title,
                     Description=description,
                     Priority=priority,
-                    Casualty=casualty
+                    Casualty=casualty,
+                    Radius=radius
                 )
 
                 report.save()
@@ -84,6 +86,7 @@ def lo_view(request, pk, username):
         red_report_list = report_list.filter(Priority='red')
         yellow_report_list = report_list.filter(Priority='yellow')
         green_report_list = report_list.filter(Priority='green')
+		
         context = {
             'name': 'Liaison Officer ' + request.user.username,
             'red_report_list': red_report_list,
@@ -97,16 +100,22 @@ def lo_view(request, pk, username):
 
 def retrieve_details(request, pk, username, reportPK):
     report = Report.objects.get(pk=reportPK)
-    return render(request, 'gui/detail.html', {'report': report})
+    location = Location.objects.get(Report=report)
+    return render(request, 'gui/detail.html', {'report': report, 'location': location,})
 
 
-def update_details(request, pk, username, IncidentID):
-    if request.method == 'POST':
-        report = Report.objects.get(IncidentID=IncidentID)
-        title = report.Title
-        report.Vetted = True
-        report.save()
-        messages.success(request, "You have successfully submitted the report [" + IncidentID + "] " + title)
-        return HttpResponse(report.Vetted)
+def update_details(request, pk, username, reportPK):
+	if request.method == 'POST':
+		crisis = request.POST['crisis']
+		report = Report.objects.get(pk=reportPK)
+		incidentID = report.IncidentID
+		title = report.Title
+		report.Vetted = True
+		report.save()
+		if crisis == "n":
+			messages.success(request, "Successfully authenticated Non-Crisis Report [" + incidentID + "] " + title)
+		else:
+			messages.success(request, "Successfully authenticated Crisis Report [" + incidentID + "] " + title)
+		return HttpResponse(report.Vetted)
 
-    return HttpResponse('false')
+	return HttpResponse('false')
